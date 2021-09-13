@@ -2,7 +2,7 @@
 * @Author: Samarth BM.
 * @Date: 2021-09-13 20:10  
 * @Last Modified by: Samarth BM
-* @Last Modified time: 2021-09-13 24:18 
+* @Last Modified time: 2021-09-13 24:36 
 * @Title: :To calculate employee daily and monthly wage.
 """
 
@@ -52,23 +52,24 @@ def calculate_emp_wage():
     total_working_hrs = 0
     total_working_days = 0
 
-    daily_wage = [] # List to store daily wage
-    totalWage = []  # List to store total wage
-
+    wage = {} # Dictonary to store wages along with days
+    
     # Looping till maximum working days or maximum working hours is achieved.
     while not(total_working_days == MAX_WORKING_DAYS or total_working_hrs == MAX_WORKING_HRS):
         attendance = random.randint(0,2)
         emp_attendance = switcher.get(attendance)
         working_hrs = get_working_hrs(emp_attendance)
-        emp_daily_wage = wage_per_hr * working_hrs
-        daily_wage.append(emp_daily_wage)
-        
+        emp_daily_wage = wage_per_hr * working_hrs   
         total_working_hrs += working_hrs
         total_working_days += 1
         total_wage += wage_per_hr * working_hrs
-        totalWage.append(total_wage)
 
-    print("Daily wage -> ", daily_wage, "Total wage -> ", totalWage)
+        wage[total_working_days] = {
+            "Daily wage": emp_daily_wage,
+            "Total wage":  total_wage
+        }
+        
+    print("wages -> ", wage)
     print("Working hrs is: ", total_working_hrs)
     print("Working days is: ", total_working_days)
     print("Total wage is: ", total_wage)
