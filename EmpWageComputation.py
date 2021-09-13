@@ -2,7 +2,7 @@
 * @Author: Samarth BM.
 * @Date: 2021-09-13 20:10  
 * @Last Modified by: Samarth BM
-* @Last Modified time: 2021-09-13 20:32 
+* @Last Modified time: 2021-09-13 21:25 
 * @Title: :To calculate employee daily and monthly wage.
 """
 
@@ -18,14 +18,14 @@ def calculate_emp_wage():
     """    
 
     print("Welcome to employee wage computation\n")
-    attendance = random.randint(0,2)
+    # attendance = random.randint(0,2)
     
     wage_per_hr = 20    # Assuming wage per hour as 20
 
-    if attendance == 0:
+    if attendance == fullPresent:
         print("Employee is present for full time")
         working_hr = 8
-    elif attendance == 1:
+    elif attendance == part_present:
         print("Employee is present for part time")
         working_hr = 4
     else:
@@ -34,6 +34,21 @@ def calculate_emp_wage():
 
     emp_daily_wage = wage_per_hr * working_hr
     print("Employee daily wage is: ", emp_daily_wage)
+
+
+fullPresent = 0
+part_present = 1
+absent = 2
+
+switcher = {
+    
+    0: fullPresent,
+    1: part_present,
+    2: absent,
+}
+
+attendance = random.randint(0,2)
+emp_Check = switcher.get(attendance)
 
 
 if __name__ == "__main__":
