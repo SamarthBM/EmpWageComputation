@@ -8,13 +8,17 @@
 
 import random
 
-TOTAL_WORKING_DAYS = 20
+# Constants.
+MAX_WORKING_DAYS = 20
+MAX_WORKING_HRS = 100
 
 def calculate_emp_wage():
     """
     Description:
         This function is to check whether employee is present or absent.
         Based on the attendance, employee's daily and monthly wage is calculated.
+        Total wage is calculated till 20 working days is reached,
+        or total 100 working hour is reached.
 
     """    
 
@@ -22,8 +26,11 @@ def calculate_emp_wage():
     
     wage_per_hr = 20    # Assuming wage per hour as 20
     total_wage = 0
+    total_working_hrs = 0
+    total_working_days = 0
 
-    for days in range(TOTAL_WORKING_DAYS):
+    # Looping till maximum working days or maximum working hours is achieved.
+    while not(total_working_days == MAX_WORKING_DAYS or total_working_hrs == MAX_WORKING_HRS):
         attendance = random.randint(0,2)
         if attendance == fullPresent:
             print("Employee is present for full time")
@@ -38,8 +45,13 @@ def calculate_emp_wage():
         emp_daily_wage = wage_per_hr * working_hr
         print("Employee daily wage is: ", emp_daily_wage)
 
+        total_working_hrs += working_hr
+        total_working_days += 1
+
         total_wage += wage_per_hr * working_hr
     print("Employee monthly wage is: ", total_wage)
+    print("Working hrs is: ", total_working_hrs)
+    print("Working days is: ", total_working_days)
 
 
 fullPresent = 0
